@@ -47,6 +47,71 @@
 		<put-attribute name="body" value="/WEB-INF/views/cart.jsp" />
 	</definition>
 	
+	<!-- error -->
+	
+	<definition name="404" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/404.jsp" />
+	</definition>
+	
+	<!-- latout -->
+	
+	<definition name="ex_buttons" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/buttons.jsp" />
+	</definition>
+	
+	
+	<definition name="ex_cards" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/cards.jsp" />
+	</definition>
+	
+	<definition name="ex_colors" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-color.jsp" />
+	</definition>
+	
+	<definition name="ex_borders" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/borders.jsp" />
+	</definition>
+	
+	<definition name="ex_animations" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-animation.jsp" />
+	</definition>
+	
+	<definition name="ex_other" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-other.jsp" />
+	</definition>
+	
+	<definition name="ex_login" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/login.jsp" />
+	</definition>
+	<definition name="ex_register" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/register.jsp" />
+	</definition>
+	<definition name="ex_forgotPassword" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/forgot-password.jsp" />
+	</definition>
+	<definition name="ex_blankPage" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/blank.jsp" />
+	</definition>
+	<definition name="ex_charts" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/charts.jsp" />
+	</definition>
+	<definition name="ex_tables" extends="base">
+		<put-attribute name="title" value="Cart information page" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/tables.jsp" />
+	</definition>
+	
 
 	
 </tiles-definitions>

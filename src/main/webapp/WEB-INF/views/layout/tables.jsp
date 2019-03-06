@@ -2,34 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#sendMemberpage").click(function(e){
-			e.preventDefault();
-			$.post("admin/sendMemberpage", function(data, status){
-				alert("data : " + data + "\nStatus" + status);
-			});
-		});
-	});
-</script>
-
 <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">인사 관리</h1>
-          <p class="mb-4">인사 관리 를 위한 관리자 페이지 데모 입니다.</p>
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary" style="display:inline;">직원 목록</h6>
-              <a href="<c:url value="/admin/sendMemberpage"/>" class="btn btn-secondary btn-icon-split" style="float:right;">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-arrow-right"></i>
-                    </span>
-                    <span class="text">직원 추가하기</span>
-                  </a>
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
