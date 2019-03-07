@@ -14,20 +14,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/mainContent.jsp" />
 	</definition>
 	
-	<definition name="shopping-products" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/shopping-products.jsp" />
-	</definition>
-	
-	<definition name="admin" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
-	</definition>
-	
-	<definition name="adminProduct" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/adminProduct.jsp" />
-	</definition>
-	
-	<definition name="addProduct" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/addProduct.jsp" />
+	<definition name="addMember" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/addMember.jsp" />
 	</definition>
 	<definition name="updateProduct" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/updateProduct.jsp" />

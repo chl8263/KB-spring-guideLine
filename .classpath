@@ -25,5 +25,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/core_common_lib-0.0.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/core_log-0.0.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/core_property-0.0.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/neo_web.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
