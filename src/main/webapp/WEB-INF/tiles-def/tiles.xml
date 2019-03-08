@@ -17,8 +17,8 @@
 	<definition name="addMember" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/addMember.jsp" />
 	</definition>
-	<definition name="updateProduct" extends="base">
-		<put-attribute name="body" value="/WEB-INF/views/updateProduct.jsp" />
+	<definition name="updateMember" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views/updateMember.jsp" />
 	</definition>
 	<definition name="login" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
@@ -42,7 +42,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/layout/404.jsp" />
 	</definition>
 	
-	<!-- latout -->
+	<!-- layout -->
 	
 	<definition name="ex_buttons" extends="base">
 		<put-attribute name="title" value="Cart information page" />
@@ -57,7 +57,7 @@
 	
 	<definition name="ex_colors" extends="base">
 		<put-attribute name="title" value="Cart information page" />
-		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-color.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/ultilties-color.jsp" />
 	</definition>
 	
 	<definition name="ex_borders" extends="base">
@@ -67,12 +67,12 @@
 	
 	<definition name="ex_animations" extends="base">
 		<put-attribute name="title" value="Cart information page" />
-		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-animation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/ultilties-animation.jsp" />
 	</definition>
 	
 	<definition name="ex_other" extends="base">
 		<put-attribute name="title" value="Cart information page" />
-		<put-attribute name="body" value="/WEB-INF/views/layout/utilties-other.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/layout/ultilties-other.jsp" />
 	</definition>
 	
 	<definition name="ex_login" extends="base">

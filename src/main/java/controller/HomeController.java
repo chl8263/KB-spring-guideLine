@@ -2,26 +2,38 @@ package controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import neo.common.data.DataMap;
+import service.MemberService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
+	@Autowired
+	public MemberService memberService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		
+	public ModelAndView home() {
+
 		testOracle();
-		
-		return "home";
+
+		List<DataMap> list = memberService.findAllMember();
+
+		System.out.println(list);
+
+		return new ModelAndView("home","list",list);
 	}
-	
+
 	private void testOracle() {
 		String DRIVER = "oracle.jdbc.driver.OracleDriver";
 
@@ -49,5 +61,5 @@ public class HomeController {
 
 		}
 	}
-	
+
 }

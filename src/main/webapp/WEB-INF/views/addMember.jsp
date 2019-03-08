@@ -47,7 +47,7 @@
 
 
 					<input type="submit" value="submit" class="btn btn-default">
-					<a href="<c:url value="/admin/products"/>"
+					<a href="<c:url value="redirect:/"/>"
 						class="btn btn-default">cancel</a>
 				</form>
 
