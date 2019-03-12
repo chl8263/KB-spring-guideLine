@@ -29,7 +29,7 @@ public class HomeController {
 
 		List<DataMap> list = memberService.findAllMember();
 
-		System.out.println(list);
+		System.out.println("전체 맴버 크기 -->  " + list.size());
 
 		return new ModelAndView("home","list",list);
 	}

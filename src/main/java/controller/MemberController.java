@@ -96,6 +96,7 @@ public class MemberController {
 	@RequestMapping(value = "/deleteMember/{id}", method = RequestMethod.GET)
 	public String deleteMember(@PathVariable int id) {
 		memberService.deleteMember(id);
+		System.out.println("!!!!!!!!!");
 		return "redirect:/";
 	}
 	

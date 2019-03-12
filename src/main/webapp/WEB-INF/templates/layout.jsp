@@ -104,7 +104,7 @@
 		<script src="<c:url value="/resources/js/demo/chart-area-demo.js"/>"></script>
 
 		<script src="<c:url value="/resources/js/demo/chart-pie-demo.js"/>"></script>
-		<script src="<c:url value="/resources/js/demo/datatables-demo.js"/>"></script>
+		<%-- <script src="<c:url value="/resources/js/demo/datatables-demo.js"/>"></script> --%>
 		
 </body>
 
