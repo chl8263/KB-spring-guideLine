@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import neo.common.data.DataMap;
 import service.MemberService;
@@ -23,7 +22,7 @@ public class HomeController {
 	public MemberService memberService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home() {
+	public String home() {
 
 		testOracle();
 
@@ -31,7 +30,8 @@ public class HomeController {
 
 		System.out.println("전체 맴버 크기 -->  " + list.size());
 
-		return new ModelAndView("home","list",list);
+		//return new ModelAndView("home","list",list);
+		return "redirect:/paging/setDataTable?length=10&currentPage=1";
 	}
 
 	private void testOracle() {

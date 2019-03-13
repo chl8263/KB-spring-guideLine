@@ -12,8 +12,6 @@
 
 	$(document).ready(function(){
 		
-		setDataTable(10,1);
-		
 	   $('table tr').mouseover(function(){ 
 	      $(this).css("backgroundColor","#ccc"); 
 	   }); 
@@ -22,10 +20,10 @@
 	   }); 
 	   
 	   
-	   
 	   $('#dataTable_length').change(function(){
 		   var length = $('#dataTable_length option:selected').val();
-		   setDataTable(length,1);
+			document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+length+"&currentPage=1"
+
 		   });
 	});
 	
@@ -37,7 +35,7 @@
 			contentType : "application/json; charset=UTF-8",
 			data : {length : length,currentPage : currentPage },
 			success : function(){
-				console.log($this.attr(list));
+				alert("success");
 			}
 		});
 	}
@@ -48,13 +46,23 @@
 		
 		if(result){
 			$.ajax({
-				url : "admin/deleteMember/"+id,
+				url : "${pageContext.request.contextPath}/admin/deleteMember/"+id,
 				type : "GET",
 				success : function(){
-					document.location.href = "/demo/";
+					document.location.href = "${pageContext.request.contextPath}/";
 				}
 			});
 		} 
+	}
+	
+	function page(idx){
+		var pageNum = idx;
+		var contentNum = $('#dataTable_length option:selected').val();
+		location.href = "${pageContext.request.contextPath}/list?"
+	}
+	
+	function debug(idx, current){
+		console.error(idx+" %% "+current);
 	}
 </script>
 
@@ -79,7 +87,7 @@
 						</div>
 					</div>
 					<label>Search: <input type="search" placeholder=""></label>
-					<a href="admin/addMember" class="btn btn-secondary btn-icon-split"
+					<a href="${pageContext.request.contextPath}/admin/addMember" class="btn btn-secondary btn-icon-split"
 						style="float: right;"> <span class="icon text-white-50">
 							<i class="fas fa-arrow-right"></i>
 					</span> <span class="text">직원 추가하기</span>
@@ -125,33 +133,54 @@
 					</tbody>
 				</table>
 
-				<div class="row">
-					<div class="col-sm-12 col-md-5">
-						<div class="dataTables_info" id="dataTable_info" role="status"
-							aria-live="polite">Showing 1 to 1 of 1 entries</div>
-					</div>
+				<div class="row" style="width:500px; float:left; margin:0 auto; text-align:center;">
+					
 					<div class="col-sm-12 col-md-7">
 						<div class="dataTables_paginate paging_simple_numbers"
 							id="dataTable_paginate">
 							<ul class="pagination">
-								<li class="paginate_button page-item previous disabled"
+								<!-- <li class="paginate_button page-item previous disabled"
 									id="dataTable_startPage"><a href="#"
 									aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-									class="page-link"><<</a></li>
+									class="page-link"><<</a></li> -->
+									
+								<c:if test = "${page.prev}">
 								<li class="paginate_button page-item previous disabled"
-									id="dataTable_previous"><a href="#"
+									id="dataTable_previous"><a href="javascript:page(${page.getStartPage()-1 });"
 									aria-controls="dataTable" data-dt-idx="0" tabindex="0"
 									class="page-link"><</a></li>
-								<li class="paginate_button page-item active"><a href="#"
-									aria-controls="dataTable" data-dt-idx="1" tabindex="0"
-									class="page-link">1</a></li>
+									
+								</c:if>
+								
+								<c:forEach begin="${page.getStartPage() }" end="${page.getEndPage()}" var="idx">
+									<script>debug(${idx},${page.getCurrentPage()+1})</script> 
+									
+									<c:set var ="idx" value="${idx }"/>
+									<c:set var ="current" value="${page.getCurrentPage()+1}"/>
+									<c:choose >
+										<c:when test="${idx == current }">
+											<li class="paginate_button page-item active"><a href="javascript:page(${idx });"
+											aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+											class="page-link">${idx}</a></li>	
+										</c:when>
+										<c:otherwise>
+											<li class="paginate_button page-item "><a href="javascript:page(${idx });"
+											aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+											class="page-link">${idx}</a></li>
+										</c:otherwise>
+									</c:choose>
+									
+								</c:forEach>
+									
+								<c:if test="${page.next }">	
 								<li class="paginate_button page-item next disabled"
-									id="dataTable_next"><a href="#" aria-controls="dataTable"
+									id="dataTable_next"><a href="javascript:page(${page.getEndPage()-1 });" aria-controls="dataTable"
 									data-dt-idx="2" tabindex="0" class="page-link">></a></li>
-								<li class="paginate_button page-item previous disabled"
+								</c:if>
+								<!-- <li class="paginate_ --%>button page-item previous disabled"
 									id="dataTable_lastPage"><a href="#"
 									aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-									class="page-link">>></a></li>
+									class="page-link">>></a></li> -->
 							</ul>
 						</div>
 					</div>

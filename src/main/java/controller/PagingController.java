@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import neo.common.data.DataMap;
 import service.PagingService;
@@ -18,8 +17,15 @@ public class PagingController {
 
 	@Autowired
 	private PagingService service;
+	
+	
+	@RequestMapping(value = "/aa" , method = RequestMethod.GET)
+	public String aa(){
+		return "home";
+	}
+	
 
-	@ResponseBody
+	
 	@RequestMapping(value = "/setDataTable" , method = RequestMethod.GET)
 	public String setDataTable(HttpServletRequest request) {
 		
@@ -53,8 +59,13 @@ public class PagingController {
 		request.setAttribute("list" ,service.getPagingData(map));
 		request.setAttribute("page" ,maker);
 		
+		DataMap dataMap = new DataMap();
+		dataMap.put("list" ,service.getPagingData(map));
+		dataMap.put("page" ,maker);
 		
-		return "";
+		
+		System.out.println(service.getPagingData(map));
+		return "home";
 	}
 
 }
