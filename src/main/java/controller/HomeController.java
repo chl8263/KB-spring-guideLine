@@ -26,6 +26,10 @@ public class HomeController {
 		
 		
 		System.out.println("hihihihih");
+		System.out.println("hihihihih222222");
+		
+		
+		
 		testOracle();
 
 		List<DataMap> list = memberService.findAllMember();
