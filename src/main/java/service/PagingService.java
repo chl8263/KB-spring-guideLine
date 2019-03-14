@@ -25,12 +25,11 @@ public class PagingService {
 	
 	public List<DataMap> getPagingData(DataMap map){
 		mapper = session.getMapper(PagingDao.class);
-
 		
 		return mapper.getPagingData(map);
 	}
 
-	public void setDataTable(String countNum,String currentPage) {
+	/*public void setDataTable(String countNum,String currentPage) {
 		mapper = session.getMapper(PagingDao.class);
 		
 		System.out.println("************* "+countNum);
@@ -57,6 +56,6 @@ public class PagingService {
 		System.out.println("#$#$#$"+totalCount);
 		
 		
-	}
+	}*/
 
 }

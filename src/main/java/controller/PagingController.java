@@ -32,8 +32,7 @@ public class PagingController {
 		PageMaker maker = new PageMaker();
 		
 		int displayPageNum =  Integer.parseInt(request.getParameter("length"));
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));		
 		try{
 			
 			maker.setTotalcount(service.getTotalCount());	//전체 게시글 개수 지정
@@ -49,22 +48,25 @@ public class PagingController {
 		}catch (NullPointerException e) {
 			// null일때 체크하자 
 		}
+
+		int displayNum = maker.getDisplayPageNum();
+		int currentNum = maker.getCurrentPage();
 		
-		DataMap map = new DataMap();
-		map.put("start", maker.getCurrentPage());
-		map.put("end", maker.getDisplayPageNum()+1);
+		DataMap dbPagingMap = new DataMap();
+		dbPagingMap.put("start", (currentNum*displayNum));
+		dbPagingMap.put("end", (displayNum*(currentNum+1))+1);
 		
-		System.out.println(map.get("start") + "  ^^^  " + map.get("end"));
+		System.out.println(dbPagingMap.get("start") + "  ^^^  " + dbPagingMap.get("end"));
 		
-		request.setAttribute("list" ,service.getPagingData(map));
-		request.setAttribute("page" ,maker);
+		request.setAttribute("list",service.getPagingData(dbPagingMap));
+		request.setAttribute("page",maker);
+		request.setAttribute("length" ,maker.getDisplayPageNum());
+		request.setAttribute("current" ,maker.getCurrentPage());
 		
-		DataMap dataMap = new DataMap();
+		/*DataMap dataMap = new DataMap();
 		dataMap.put("list" ,service.getPagingData(map));
-		dataMap.put("page" ,maker);
+		dataMap.put("page" ,maker);*/
 		
-		
-		System.out.println(service.getPagingData(map));
 		return "home";
 	}
 

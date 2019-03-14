@@ -5,7 +5,7 @@ public class PageMaker {
 	private int startPage = 1;	// 현재 페이지 블록의 시작 페이지
 	private int endPage = this.getListCount();	// 연재 페이지 블록의 마지막 페이지
 	private boolean prev = false;	// 이전 페이지로 가는 화살표
-	private boolean next;	// 다음 페이지로 가는 화살표
+	private boolean next = false;	// 다음 페이지로 가는 화살표
 	
 	private int displayPageNum = 10;	// 한 페이지에 몇개 표시할지
 	

@@ -12,6 +12,9 @@
 
 	$(document).ready(function(){
 		
+	  	var length = "${length}";
+	  	$('#dataTable_length option[value='+length+']').attr('selected','selected');
+		
 	   $('table tr').mouseover(function(){ 
 	      $(this).css("backgroundColor","#ccc"); 
 	   }); 
@@ -23,11 +26,11 @@
 	   $('#dataTable_length').change(function(){
 		   var length = $('#dataTable_length option:selected').val();
 			document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+length+"&currentPage=1"
-
+			
 		   });
 	});
 	
-	function setDataTable(length,currentPage){
+	/* function setDataTable(length,currentPage){
 		$.ajax({
 			url : "paging/setDataTable",
 			type : "GET",
@@ -38,7 +41,7 @@
 				alert("success");
 			}
 		});
-	}
+	} */
 
 
 	function deleteMember(id) {
@@ -49,21 +52,21 @@
 				url : "${pageContext.request.contextPath}/admin/deleteMember/"+id,
 				type : "GET",
 				success : function(){
-					document.location.href = "${pageContext.request.contextPath}/";
+					document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+${length+1}+"&currentPage="+${current};
 				}
 			});
 		} 
 	}
 	
 	function page(idx){
+		
+		var length = "${length}";
+		
 		var pageNum = idx;
 		var contentNum = $('#dataTable_length option:selected').val();
-		location.href = "${pageContext.request.contextPath}/list?"
+		location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+length+"&currentPage="+idx;
 	}
 	
-	function debug(idx, current){
-		console.error(idx+" %% "+current);
-	}
 </script>
 
 <!-- Begin Page Content -->
@@ -76,6 +79,7 @@
 				<div class="row">
 					<div class="col-sm-12 col-md-6">
 						<div class="dataTables_length" id="dataTable_length">
+						
 							<label>Show <select name="dataTable_length"
 								id="dataTable_length">
 									<option value="10">10</option>
@@ -145,7 +149,7 @@
 									class="page-link"><<</a></li> -->
 									
 								<c:if test = "${page.prev}">
-								<li class="paginate_button page-item previous disabled"
+								<li class="paginate_button page-item "
 									id="dataTable_previous"><a href="javascript:page(${page.getStartPage()-1 });"
 									aria-controls="dataTable" data-dt-idx="0" tabindex="0"
 									class="page-link"><</a></li>
@@ -153,7 +157,6 @@
 								</c:if>
 								
 								<c:forEach begin="${page.getStartPage() }" end="${page.getEndPage()}" var="idx">
-									<script>debug(${idx},${page.getCurrentPage()+1})</script> 
 									
 									<c:set var ="idx" value="${idx }"/>
 									<c:set var ="current" value="${page.getCurrentPage()+1}"/>
@@ -173,9 +176,9 @@
 								</c:forEach>
 									
 								<c:if test="${page.next }">	
-								<li class="paginate_button page-item next disabled"
-									id="dataTable_next"><a href="javascript:page(${page.getEndPage()-1 });" aria-controls="dataTable"
-									data-dt-idx="2" tabindex="0" class="page-link">></a></li>
+									<li class="paginate_button page-item"
+										id="dataTable_next"><a href="javascript:page(${page.getEndPage()+1 });" aria-controls="dataTable"
+										data-dt-idx="2" tabindex="0" class="page-link">></a></li>
 								</c:if>
 								<!-- <li class="paginate_ --%>button page-item previous disabled"
 									id="dataTable_lastPage"><a href="#"
