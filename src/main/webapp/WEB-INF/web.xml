@@ -10,6 +10,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			/WEB-INF/spring/appServlet/message-context.xml
 			/WEB-INF/spring/appServlet/service-context.xml
 			/WEB-INF/spring/appServlet/dao-context.xml
 		</param-value>

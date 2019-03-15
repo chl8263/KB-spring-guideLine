@@ -11,9 +11,10 @@
 
 	<!-- 페이징 대로 가져오기 -->
 	<select id="getPagingData" parameterType="neo.common.data.DataMap" resultType="neo.common.data.DataMap">
-		select * from(
+		select MEMBER_ID,NAME,SEX,AGE,POSITION_KR as POSITION from(
 			SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER() AS TOTCNT FROM(
-				SELECT * FROM MEMBER
+				SELECT MEMBER_ID,NAME,SEX,AGE,POSITION_KR FROM MEMBER , positionmanager
+					WHERE MEMBER.POSITION_ID = positionmanager.POSITION_ID
 					ORDER BY MEMBER_ID 
 					) A
 		)

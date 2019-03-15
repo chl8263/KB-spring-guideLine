@@ -45,5 +45,9 @@ public class MemberService {
 		mapper = session.getMapper(MemberDao.class);
 		mapper.deleteMember(memberId);
 	}
+	public List<DataMap> getPositionList() {
+		mapper = session.getMapper(MemberDao.class);
+		return mapper.getPositionList();
+	}
 
 }

@@ -20,13 +20,11 @@
 	   }); 
 	   $('table tr').mouseout(function(){ 
 	      $(this).css("backgroundColor","#fff"); 
-	   }); 
-	   
+	   });
 	   
 	   $('#dataTable_length').change(function(){
 		   var length = $('#dataTable_length option:selected').val();
-			document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+length+"&currentPage=1"
-			
+			document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+length+"&currentPage=1";
 		   });
 	});
 	
@@ -43,6 +41,9 @@
 		});
 	} */
 
+	function selectAndUpdateMember(id){
+		location.href = "${pageContext.request.contextPath}/admin/updateMember/"+id;
+	}
 
 	function deleteMember(id) {
 		var result = confirm("직원을 해고하시겠습니까 ?");
@@ -113,19 +114,19 @@
 
 					<tbody>
 						<c:forEach var="list" items="${list}">
-							<tr id="tableData">
+							<tr id="tableData" onclick="selectAndUpdateMember(${list['MEMBER_ID']})">
 								<td>${list['MEMBER_ID']}</td>
 								<td>${list['NAME']}</td>
 								<td>${list['SEX']}</td>
 								<td>${list['AGE']}</td>
 								<td>${list['POSITION']}</td>
-								<td><a
+								<td><%-- <a
 									href="<c:url value="/admin/updateMember/${list['MEMBER_ID']}"/>"
 									class="btn btn-info btn-icon-split"> <span
 										class="icon text-white-50"> <i
 											class="fas fa-info-circle"></i>
 									</span> <span class="text">수정</span>
-								</a>
+								</a> --%>
 
 									<div onclick="deleteMember(${list['MEMBER_ID']})"
 										class="btn btn-danger btn-icon-split" "/> <span

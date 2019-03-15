@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +67,17 @@ public class MemberController {
 	@RequestMapping(value = "/updateMember/{id}" , method = RequestMethod.GET)
 	public ModelAndView updateMember(@PathVariable int id) {
 		
-		DataMap map = memberService.getMemberById(id);
+		ModelAndView mv = new ModelAndView();
 		
-		return new ModelAndView("updateMember","map",map);
+		DataMap userInfo = memberService.getMemberById(id);
+		List<DataMap> positionList = (List<DataMap>) memberService.getPositionList();
+		
+		
+		mv.setViewName("updateMember");
+		mv.addObject("userInfo",userInfo);
+		mv.addObject("positionList",positionList);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/updateMember" , method = RequestMethod.POST)
