@@ -9,9 +9,12 @@
 <script>
 	$(document).ready(function() {
 
-		var length = "${userInfo['position']}";
-		console.error(length);
-	  	//$('#dataTable_length option[value='+length+']').attr('selected','selected');
+		var length = "${userInfo['POSITION_ID']}";
+		var showPosition = "${showPosition}";
+		console.warn(showPosition);
+		
+		$('#position').val(showPosition).attr('selected','selected');
+	  	//$('#position option[value='+showPosition+']').attr('selected','selected');
 		
 		var sex = "${userInfo['SEX']}";
 		if (sex == "man") {
@@ -23,6 +26,11 @@
 		}
 
 	});
+	
+	
+	function goBack(){
+		histroy.go(-1);
+	}
 </script>
 
 <div id="content-wrapper">
@@ -74,7 +82,7 @@
 						
 					<input type="submit"
 						value="submit" class="btn btn-default"> <a
-						href="<c:url value="redirect:/"/>" class="btn btn-default">cancel</a>
+						href="javascript:goBack();" class="btn btn-default">cancel</a>
 				</form>
 
 				<br />

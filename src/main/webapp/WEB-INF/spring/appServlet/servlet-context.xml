@@ -37,6 +37,26 @@
 			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<beans:property name="paramName" value="lang" />
 		</beans:bean>
+		 
+		 
+		 <interceptor>
+            <mapping path="/**" /> 
+            <beans:bean id="DataMapCreationInterceptor" class="interceptor.DataMapCreationInterceptor"/>
+         </interceptor>
+
+		<!-- <interceptor>
+            <mapping path="/**"/>
+            <exclude-mapping path="/noLogin/**/*.do"/>
+            <exclude-mapping path="/web/**/*.do"/>
+            <exclude-mapping path="/main/**/*.do"/>
+            <exclude-mapping path="/login/**/*.do"/>
+            <exclude-mapping path="/error/**/*.do"/>
+            <beans:bean id="LoginCheckInterceptor" class="neo.web.mvc.interceptor.LoginCheckInterceptor"></beans:bean>
+        </interceptor>
+        <interceptor>
+            <mapping path="/**"/>
+            <beans:bean id="DataMapCreationInterceptor" class="neo.web.mvc.interceptor.DataMapCreationInterceptor"></beans:bean>
+        </interceptor> -->
 	</interceptors>
 
 

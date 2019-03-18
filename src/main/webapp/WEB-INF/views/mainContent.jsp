@@ -56,7 +56,7 @@
 					document.location.href = "${pageContext.request.contextPath}/paging/setDataTable?length="+${length+1}+"&currentPage="+${current};
 				}
 			});
-		} 
+		}
 	}
 	
 	function page(idx){
