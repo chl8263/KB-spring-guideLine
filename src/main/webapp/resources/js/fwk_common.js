@@ -13,6 +13,8 @@ $.fn.extend({
 				return false;
 			}
 		}
+		
+		
 		return form.spiderSubmit(isXecureSubmit);
 	},
 	spiderValidate: function() {
