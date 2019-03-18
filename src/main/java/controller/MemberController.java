@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,13 @@ import service.MemberService;
 @Controller
 @RequestMapping(value = "/admin")
 public class MemberController {
-	
+	    
 	@Autowired
 	public MemberService memberService;
 	
 	@RequestMapping(value = "/addMember" , method = RequestMethod.GET)
 	public ModelAndView addMember() {
-		
+		System.out.println("ㅇㅇㅇㅇㅇㅇㅇ");
 		return new ModelAndView("addMember");
 	}
 	
@@ -65,9 +67,29 @@ public class MemberController {
 	@RequestMapping(value = "/updateMember/{id}" , method = RequestMethod.GET)
 	public ModelAndView updateMember(@PathVariable int id) {
 		
-		DataMap map = memberService.getMemberById(id);
+		ModelAndView mv = new ModelAndView();
 		
-		return new ModelAndView("updateMember","map",map);
+		DataMap userInfo = memberService.getMemberById(id);
+		List<DataMap> positionList = (List<DataMap>) memberService.getPositionList();
+		
+		for (int i=0; i< positionList.size(); i ++) {
+			if(userInfo.get("POSITION_ID").equals(positionList.get(i).get("POSITION_ID"))) {
+				mv.addObject("showPosition",positionList.get(i).get("POSITION_KR"));
+				System.out.println(positionList.get(i).get("POSITION_KR"));
+			}
+		}
+		
+		
+		
+		
+		
+		mv.setViewName("updateMember");
+		mv.addObject("userInfo",userInfo);
+		mv.addObject("positionList",positionList);
+		
+		System.out.println(userInfo);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value = "/updateMember" , method = RequestMethod.POST)

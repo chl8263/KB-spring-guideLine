@@ -14,7 +14,7 @@ $.fn.extend({
 			}
 		}
 		
-		
+		 
 		return form.spiderSubmit(isXecureSubmit);
 	},
 	spiderValidate: function() {

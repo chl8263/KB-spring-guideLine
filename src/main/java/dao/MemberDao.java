@@ -16,5 +16,7 @@ public interface MemberDao {
 
 	void deleteMember(int memberId);
 
+	List<DataMap> getPositionList();
+
 	
 }

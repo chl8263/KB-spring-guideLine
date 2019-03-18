@@ -5,8 +5,8 @@
 
 	<!-- 맴버 추가 -->
 	<insert id="insertMember" parameterType="neo.common.data.DataMap">
-		insert into member( MEMBER_ID, NAME, SEX , AGE , POSITION )
-		values(MEMBER_SEQ.nextval, #{name}, #{sex}, #{age}, #{position})
+		insert into member( MEMBER_ID, NAME, SEX , AGE , POSITION_ID )
+		values(MEMBER_SEQ.nextval, #{name}, #{sex}, #{age}, (select position_id from positionmanager where position_kr=#{position}))
 	</insert>
 
 
@@ -23,12 +23,17 @@
 	
 	<!-- 맴버 업데이트 -->
 	<update id="updateMember" parameterType="neo.common.data.DataMap">
-		update MEMBER set NAME = #{name} , SEX = #{sex}, AGE = #{age} , POSITION = #{position} where MEMBER_ID = #{memberId}
+		update MEMBER set NAME = #{name} , SEX = #{sex}, AGE = #{age} , POSITION_ID = #{position} where MEMBER_ID = #{memberId}
 	</update>
 	
 	<!-- 맴버 삭제 -->
 	<delete id="deleteMember" parameterType="int">
 		delete from MEMBER where MEMBER_ID = #{memberId}
 	</delete>
+	
+	<!-- 직책 리스트 가져오기 -->
+	<select id="getPositionList" resultType="neo.common.data.DataMap">
+		select * from POSITIONMANAGER order by position_id
+	</select>
 	
 </mapper>

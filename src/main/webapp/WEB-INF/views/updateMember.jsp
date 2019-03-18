@@ -9,7 +9,14 @@
 <script>
 	$(document).ready(function() {
 
-		var sex = "${map['SEX']}";
+		var length = "${userInfo['POSITION_ID']}";
+		var showPosition = "${showPosition}";
+		console.warn(showPosition);
+		
+		$('#position').val(showPosition).attr('selected','selected');
+	  	//$('#position option[value='+showPosition+']').attr('selected','selected');
+		
+		var sex = "${userInfo['SEX']}";
 		if (sex == "man") {
 			$("#man").prop('checked', true);
 			$("#woman").prop('checked', false);
@@ -19,6 +26,11 @@
 		}
 
 	});
+	
+	
+	function goBack(){
+		histroy.go(-1);
+	}
 </script>
 
 <div id="content-wrapper">
@@ -33,38 +45,44 @@
 					method="post">
 					<div class="form-group">
 						<label for="name">이름 : </label> <input type="text" name="name"
-							id="name" class="form-control" value="${map['NAME']}" />
+							id="name" class="form-control" value="${userInfo['NAME']}" />
 
 					</div>
 
 					<div class="form-group">
 						<label for="category">성별 : </label> <input type="radio" name="sex"
-							id="man" value="man" value="${map['SEX']}" /> 남자 <input
-							type="radio" name="sex" id="woman" value="woman"
-							value="${map['SEX']}" /> 여자
+							id="man" value="man" value="man" /> 남자 <input
+							type="radio" name="sex" id="woman" userInfo="woman"
+							value="woman" /> 여자
 					</div>
 
 					<div class="form-group">
 						<label for="manufacturer">나이 : </label> <input type="number"
-							name="age" id="age" class="form-control" value="${map['AGE']}" />
+							name="age" id="age" class="form-control" value="${userInfo['AGE']}"  />
 
 
 					</div>
 
 					<div class="form-group">
-						<label for="price">직책 : </label> <input type="text"
+						<label for="price">직책 : </label> 
+						<select name="position" id="position">
+							<c:forEach var="list" items="${positionList}">
+								<option value="${list['POSITION_ID']}">${list['POSITION_KR']}</option>
+							</c:forEach>
+						</select>
+						<%-- <input type="text"
 							name="position" id="position" class="form-control"
-							value="${map['POSITION']}" />
+							value="${userInfo['POSITION']}" /> --%>
 
 
 					</div>
 
 					<input type="hidden" name="memberId" id="memberId"
-						value="${map['MEMBER_ID']}" /> 
+						value="${userInfo['MEMBER_ID']}" /> 
 						
 					<input type="submit"
 						value="submit" class="btn btn-default"> <a
-						href="<c:url value="redirect:/"/>" class="btn btn-default">cancel</a>
+						href="javascript:goBack();" class="btn btn-default">cancel</a>
 				</form>
 
 				<br />

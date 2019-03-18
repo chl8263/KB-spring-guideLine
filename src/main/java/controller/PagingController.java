@@ -19,13 +19,6 @@ public class PagingController {
 	private PagingService service;
 	
 	
-	@RequestMapping(value = "/aa" , method = RequestMethod.GET)
-	public String aa(){
-		return "home";
-	}
-	
-
-	
 	@RequestMapping(value = "/setDataTable" , method = RequestMethod.GET)
 	public String setDataTable(HttpServletRequest request) {
 		
