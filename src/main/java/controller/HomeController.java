@@ -45,7 +45,7 @@ public class HomeController {
 	private void testOracle() {
 		String DRIVER = "oracle.jdbc.driver.OracleDriver";
 
-		String URL = "jdbc:oracle:thin:@localhost:1521/orcl";
+		String URL = "jdbc:oracle:thin:@192.168.0.88:1521/orcl";
 
 		String USER = "spring";
 

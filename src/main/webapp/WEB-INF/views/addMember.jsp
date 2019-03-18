@@ -5,7 +5,24 @@
 
 
 
+<html>
+<head>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.12.4.min.js"></script>
 
+   
+<script type="text/javascript">
+
+$(window).load(function(){
+	fwk.initializeForms(); //fwk_common.js 
+});
+
+</script>
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fwk_common.js"></script>
+
+</head>
+
+<body>
 <div id="content-wrapper">
 
 	<div class="container-fluid">
@@ -33,7 +50,7 @@
 
 					<div class="form-group">
 						<label for="manufacturer">나이 : </label>
-						<input type="number" name="age" id="age" class="form-control" />
+						<input type="number" name="age" id="age" class="form-control inputNumOnly" />
 						
 
 					</div>
@@ -55,3 +72,5 @@
 
 			</div>
 		</div>
+	</body>		
+</html>
