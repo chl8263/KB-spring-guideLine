@@ -3,7 +3,7 @@ package vo;
 public class PageMaker {
 	
 	private int startPage = 1;	// 현재 페이지 블록의 시작 페이지
-	private int endPage = this.getListCount();	// 연재 페이지 블록의 마지막 페이지
+	private int endPage = this.getListCount();	// 현재 페이지 블록의 마지막 페이지
 	private boolean prev = false;	// 이전 페이지로 가는 화살표
 	private boolean next = false;	// 다음 페이지로 가는 화살표
 	
@@ -11,6 +11,8 @@ public class PageMaker {
 	
 	private int currentblock;
 	private int lastblock;
+	
+	private int totalEndPage;
 	
 	/*
 	 * DB 에서 조회 및 외부 주입 맴버
@@ -20,10 +22,14 @@ public class PageMaker {
 	private int listCount = 5;	// 게시글 몇페이지씩 보여줄것인지	
 	
 	public void prevNext(int pageNum) {
-		if(pageNum>0 && pageNum<listCount+1) {
+		if(pageNum>0 && pageNum<listCount+1 && currentblock==getLastblock() ) {
+			setPrev(false);
+			setNext(false);
+		}else if(pageNum>0 && pageNum<listCount+1) {
 			setPrev(false);
 			setNext(true);
-		}else if(getLastblock() == getCurrentblock()) {
+		} 
+		else if(getLastblock() == getCurrentblock()) {
 			setPrev(true);
 			setNext(false);
 		}else {
@@ -46,6 +52,20 @@ public class PageMaker {
 	}
 	
 	
+	
+	
+	public int getTotalEndPage() {
+		return totalEndPage;
+	}
+
+
+
+	public void setTotalEndPage() {
+		this.totalEndPage = calcPage(getTotalcount(), displayPageNum);
+	}
+
+
+
 	public int getDisplayPageNum() {
 		return displayPageNum;
 	}

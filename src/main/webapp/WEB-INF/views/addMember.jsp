@@ -3,18 +3,12 @@
 <%@ page session="false"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-  
-
 <html>
 <head>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.12.4.min.js"></script>
 
    
 <script type="text/javascript">
-
- 
-
-
 
 
 $(window).load(function(){
@@ -61,8 +55,15 @@ $(window).load(function(){
 					</div>
 
 					<div class="form-group">
-						<label for="price">직책 : </label>
-						<input type= "text" name = "position" id="position" class="form-control" />
+						<label for="price">직책 : </label> 
+							<select name="position" id="position">
+								<c:forEach var="list" items="${positionList}">
+									<option value="${list['POSITION_ID']}">${list['POSITION_KR']}</option>
+								</c:forEach>
+							</select>
+					
+						<!-- <label for="price">직책 : </label>
+						<input type= "text" name = "position" id="position" class="form-control" /> -->
 						
 
 					</div>

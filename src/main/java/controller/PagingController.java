@@ -22,25 +22,14 @@ public class PagingController {
 	@RequestMapping(value = "/setDataTable" , method = RequestMethod.GET)
 	public String setDataTable(HttpServletRequest request) {
 		
-		PageMaker maker = new PageMaker();
 		
 		int displayPageNum =  Integer.parseInt(request.getParameter("length"));
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));		
-		try{
-			
-			maker.setTotalcount(service.getTotalCount());	//전체 게시글 개수 지정
-			maker.setCurrentPage(currentPage-1);	// 현재 페이지를 페이지 객체에 저장 쿼리사용때문에 -1
-			maker.setDisplayPageNum(displayPageNum);	//한 페이지에 볓개씩 게시글 보여줄것인지
-			maker.setCurrentblock(currentPage);		// 현재 페이지 블록이 몇번인지 페이지 번호를 통해서 지정
-			maker.setLastblock(maker.getTotalcount());	//마지막 블록 번호를 전체 게시글 수를 통해서 정한다.
-			
-			maker.prevNext(currentPage);	//현재 번호로 화살표를 나타낼지 정한다,
-			maker.setStartPage(maker.getCurrentblock());	//시작 페이지를 페이지 블록 번호로 정한다,
-			maker.setEndPage(maker.getLastblock(), maker.getCurrentblock());	//마지막 페이지를 
-			
-		}catch (NullPointerException e) {
-			// null일때 체크하자 
-		}
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		System.out.println("displayPageNum :: "+displayPageNum);
+		System.out.println("currentPage :: "+displayPageNum);
+		
+		PageMaker maker = getPagingLogic(displayPageNum,currentPage);
 
 		int displayNum = maker.getDisplayPageNum();
 		int currentNum = maker.getCurrentPage();
@@ -56,11 +45,38 @@ public class PagingController {
 		request.setAttribute("length" ,maker.getDisplayPageNum());
 		request.setAttribute("current" ,maker.getCurrentPage());
 		
-		/*DataMap dataMap = new DataMap();
-		dataMap.put("list" ,service.getPagingData(map));
-		dataMap.put("page" ,maker);*/
+		
 		
 		return "home";
+	}
+	
+	private PageMaker getPagingLogic(int displayPageNum , int currentPage) {
+		
+		PageMaker maker = new PageMaker();
+		
+		try{
+			maker.setTotalcount(service.getTotalCount());	//전체 게시글 개수 지정
+			maker.setCurrentPage(currentPage-1);	// 현재 페이지를 페이지 객체에 저장 쿼리사용때문에 -1
+			maker.setDisplayPageNum(displayPageNum);	//한 페이지에 몇개씩 게시글 보여줄것인지
+			maker.setCurrentblock(currentPage);		// 현재 페이지 블록이 몇번인지 페이지 번호를 통해서 지정
+			maker.setLastblock(maker.getTotalcount());	//마지막 블록 번호를 전체 게시글 수를 통해서 정한다.
+			
+			maker.prevNext(currentPage);	//현재 번호로 화살표를 나타낼지 정한다,
+			maker.setStartPage(maker.getCurrentblock());	//시작 페이지를 페이지 블록 번호로 정한다,
+			maker.setEndPage(maker.getLastblock(), maker.getCurrentblock());	//마지막 페이지를 
+			maker.setTotalEndPage();
+			System.out.println(maker.getTotalEndPage()+ " &&&&&&&&&&&&&&");
+			
+		}catch (NullPointerException e) {
+			// null일때 체크하자 
+		}
+			
+		/*if(currentPage > maker.getTotalEndPage()) {		//페이징 잘못된 번호 url 조작방지
+			return getPagingLogic(displayPageNum,maker.getTotalEndPage());
+		}else if (currentPage < 1) {
+			return getPagingLogic(displayPageNum,1);
+		}*/
+		return maker;
 	}
 
 }

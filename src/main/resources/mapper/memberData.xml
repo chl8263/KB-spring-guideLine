@@ -6,9 +6,9 @@
 	<!-- 맴버 추가 -->
 	<insert id="insertMember" parameterType="neo.common.data.DataMap">
 		insert into member( MEMBER_ID, NAME, SEX , AGE , POSITION_ID )
-		values(MEMBER_SEQ.nextval, #{name}, #{sex}, #{age}, (select position_id from positionmanager where position_kr=#{position}))
+		values(MEMBER_SEQ.nextval, #{name}, #{sex}, #{age}, #{position} )
 	</insert>
-
+<!-- (select position_id from positionmanager where position_kr=#{position}) -->
 
 	<!-- 맴버 전체조회 -->
 	<select id="findAllMember" resultType="neo.common.data.DataMap">

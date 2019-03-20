@@ -10,11 +10,9 @@
 	$(document).ready(function() {
 
 		var length = "${userInfo['POSITION_ID']}";
-		var showPosition = "${showPosition}";
-		console.warn(showPosition);
+		console.warn(length);
 		
-		$('#position').val(showPosition).attr('selected','selected');
-	  	//$('#position option[value='+showPosition+']').attr('selected','selected');
+		$('#position').val(length);
 		
 		var sex = "${userInfo['SEX']}";
 		if (sex == "man") {
@@ -26,7 +24,6 @@
 		}
 
 	});
-	
 	
 	function goBack(){
 		histroy.go(-1);
@@ -66,17 +63,29 @@
 					<div class="form-group">
 						<label for="price">직책 : </label> 
 						<select name="position" id="position">
+							
+							<c:set var="showPosition" value="${showPosition}" />
+							
 							<c:forEach var="list" items="${positionList}">
-								<option value="${list['POSITION_ID']}">${list['POSITION_KR']}</option>
+								<option value="${list['POSITION_ID']}" >${list['POSITION_KR']}</option>	
+								<%-- <c:set var="position" value="${list['POSITION_KR']}" />
+								
+								<c:choose>
+									<c:when test="${position == showPosition}">
+										<option value="${list['POSITION_ID']}" >${list['POSITION_KR']}</option>	
+									</c:when>
+									
+									<c:otherwise>
+										<option value="${list['POSITION_ID']}">${list['POSITION_KR']}</option>
+									</c:otherwise>
+								</c:choose> --%>
+							
+								
 							</c:forEach>
 						</select>
-						<%-- <input type="text"
-							name="position" id="position" class="form-control"
-							value="${userInfo['POSITION']}" /> --%>
-
 
 					</div>
-
+					
 					<input type="hidden" name="memberId" id="memberId"
 						value="${userInfo['MEMBER_ID']}" /> 
 						
